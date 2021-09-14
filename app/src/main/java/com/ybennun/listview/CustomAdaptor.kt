@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.BaseAdapter
+import android.widget.TextView
 
 class CustomAdaptor(var arrayList: ArrayList<Data>) : BaseAdapter() {
     override fun getCount() = arrayList.size
@@ -18,6 +19,11 @@ class CustomAdaptor(var arrayList: ArrayList<Data>) : BaseAdapter() {
         val inflater: LayoutInflater =
             context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
         val rowView: View = inflater.inflate(R.layout.item_list, parent, false)
+
+        val item = arrayList[position]
+
+        val numberTextView = rowView.findViewById<TextView>(R.id.number_text_view)
+        numberTextView.text= item.number
 
         return rowView
     }
