@@ -49,5 +49,8 @@ class MainActivity : AppCompatActivity() {
         arrayList.add(Data("9", "audio_9"))
         arrayList.add(Data("10", "audio_10"))
 
+        val customAdapter: CustomAdaptor = CustomAdaptor(arrayList)
+        list_view.adapter = customAdapter
+
     }
 }

@@ -1,3 +1,4 @@
 <resources>
     <string name="app_name">List View</string>
+    <string name="image_view_desc">click to play audio</string>
 </resources>
