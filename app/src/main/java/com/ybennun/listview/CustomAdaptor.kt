@@ -18,28 +18,32 @@ class CustomAdaptor(var arrayList: ArrayList<Data>) : BaseAdapter() {
 
     override fun getView(position: Int, convertView: View?, parent: ViewGroup?): View {
         val context = parent?.context
+        var rowView: View? = convertView
+        var mediaPlayer: MediaPlayer? = null
+
         val inflater: LayoutInflater =
             context?.getSystemService(Context.LAYOUT_INFLATER_SERVICE) as LayoutInflater
-        val rowView: View = inflater.inflate(R.layout.item_list, parent, false)
+
+        if (rowView == null)
+            rowView = inflater.inflate(R.layout.item_list, parent, false)
 
         val item = arrayList[position]
 
-        val numberTextView = rowView.findViewById<TextView>(R.id.number_text_view)
-        numberTextView.text = item.number
+        val numberTextView = rowView?.findViewById<TextView>(R.id.number_text_view)
+        numberTextView?.text = item.number
 
-        val audioImageView = rowView.findViewById<ImageView>(R.id.audio_image_view)
-        audioImageView.setOnClickListener {
+        val audioImageView = rowView?.findViewById<ImageView>(R.id.audio_image_view)
+        audioImageView?.setOnClickListener {
 
-            val mediaPlayer =
-                MediaPlayer.create(
+            if (mediaPlayer == null)
+                mediaPlayer = MediaPlayer.create(
                     context,
                     context.resources.getIdentifier(item.audioFileName, "raw", context.packageName)
                 )
 
-            mediaPlayer.start()
+            mediaPlayer?.start()
 
         }
-
-        return rowView
+        return rowView!!
     }
 }
